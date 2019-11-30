@@ -1,18 +1,39 @@
-const { db } = require('./db.js');
-const { Event } = require('./models/Event.js');
+const { app } = require('./expressroute.js');
+const { db, Event, EventDate } = require('./db/index.js');
+const PORT = process.env.PORT || 3000;
 
-module.exports = { db, Event };
-const { db } = require('./db.js');
-const { Person } = require('./models/Person.js');
-const { Event } = require('./models/Event.js');
+async function syncAndSeed() {
+  try {
+    await db.sync({ force: true });
 
-//associations
+    const events = [{ name: 'Run' }, { name: 'School' }, { name: 'Homework' }];
 
-Person.hasMany(Event); //
-Event.belongsTo(Person); //child
+    const dates = [
+      { date: '2019-11-30' },
+      { date: '2019-11-29' },
+      { date: '2019-12-01' },
+    ];
+    const [run, school, homework] = await Promise.all(
+      events.map(event => Event.create(event))
+    );
+    const [novthirty, novtwentynine, decfirst] = await Promise.all(
+      dates.map(date => EventDate.create(date))
+    );
 
-module.exports = {
-  db,
-  Person,
-  Event,
-};
+    await run.update({ eventDateId: novthirty.id });
+    await school.update({ eventDateId: novtwentynine.id });
+    await homework.update({ eventDateId: decfirst.id });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+syncAndSeed()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log('listening on port', PORT);
+    });
+  })
+  .catch(err => {
+    console.log('connection errorrrr', err);
+  });

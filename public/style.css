@@ -1,0 +1,8 @@
+.calendar-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+#week-days-header {
+  display: flex;
+}

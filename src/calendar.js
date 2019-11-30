@@ -1,21 +1,14 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-import React, { Component } from 'react';
-import dateFns from 'date-fns';
-import Moment from 'react-moment';
-import 'moment-timezone';
+import Calendar from './aclend.js';
 
 const rootEl = document.querySelector('#root');
-
-class Calendar extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>Header</div>
-        <div>Days</div>
-        <div>Cells</div>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Calendar />
+    </div>
+  );
 }
 
-ReactDOM.render(<Calendar />, rootEl);
+ReactDOM.render(<App />, rootEl);
