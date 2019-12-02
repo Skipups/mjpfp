@@ -10,8 +10,8 @@ async function syncAndSeed() {
 
     const dates = [
       { date: '2019-11-30' },
-      { date: '2019-11-29' },
-      { date: '2019-12-01' },
+      { date: '2019-12-03' },
+      { date: '2019-12-04' },
     ];
     const [run, school, homework] = await Promise.all(
       events.map(event => Event.create(event))
@@ -28,7 +28,8 @@ async function syncAndSeed() {
   }
 }
 
-syncAndSeed()
+// syncAndSeed()
+db.sync()
   .then(() => {
     app.listen(PORT, () => {
       console.log('listening on port', PORT);

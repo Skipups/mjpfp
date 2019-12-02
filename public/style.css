@@ -1,8 +1,35 @@
-.calendar-container {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
+.container {
+  font-size: 1em;
+  position: relative;
 }
-#week-days-header {
+
+.col-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+.week-header {
   display: flex;
+  flex-direction: row;
+  margin: 2rem;
+}
+
+.col-right {
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+}
+
+.number {
+  border: 2px solid grey;
+  padding: 2rem;
+  margin: 2rem;
+  text-align: center;
+  align-self: stretch;
+  grid-template-rows: auto;
 }

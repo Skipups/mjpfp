@@ -14,6 +14,10 @@ const Event = db.define('event', {
     defaultValue: false,
     allowNull: false,
   },
+  date: {
+    type: Sequelize.DATEONLY,
+    allowNull: false,
+  },
 });
 
 module.exports = { Event };
